@@ -1,3 +1,7 @@
 spring:
   application:
     name: chatbrew-backend
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+

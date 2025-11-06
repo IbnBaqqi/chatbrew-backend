@@ -1,5 +1,6 @@
 package com.salausmart.chatbrew_backend
 
+import com.salausmart.chatbrew_backend.dtos.ChatRequest
 import com.salausmart.chatbrew_backend.dtos.ChatResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatusCode
@@ -20,10 +21,9 @@ class ChatController(
 
     @GetMapping()
     fun chat(
-        @RequestBody conversationId: UUID,
-        @RequestBody prompt: String
+        @RequestBody request : ChatRequest
     ) : ResponseEntity<*> {
-        val chatResponse = chatService.sendMessage() ?: ChatResponse(conversationId, "No response") //@Todo remove the null response
+        val chatResponse = chatService.sendMessage(request) ?: ChatResponse(request.conversationId, "No response") //@Todo remove the null response
         return ResponseEntity.status(HttpStatus.OK).body(chatResponse)
     }
 }
