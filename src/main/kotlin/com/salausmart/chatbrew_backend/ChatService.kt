@@ -19,8 +19,7 @@ class ChatService (
         val promptTemplate = PromptTemplate(
             """
                 {query}.
-                Please provide a detailed and concise answer based on norminette rules
-            """.trimIndent()
+                """.trimIndent()
         )
 
         val prompt: Prompt = promptTemplate.create(mapOf("query" to request.prompt))
