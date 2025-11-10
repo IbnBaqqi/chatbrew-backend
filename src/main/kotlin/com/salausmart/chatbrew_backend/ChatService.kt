@@ -27,7 +27,7 @@ class ChatService (
         request : ChatRequest
     ) : String? {
 
-//        private val memory = ChatMemory.CONVERSATION_ID
+        val chatId = request.conversationId
 
         val promptTemplate = PromptTemplate(
             """
@@ -39,7 +39,7 @@ class ChatService (
 
         val start = System.currentTimeMillis() // Testing openai speed
         val response = chatClient.prompt(prompt)
-            .advisors()
+            .advisors { it.param(ChatMemory.CONVERSATION_ID, chatId) }
             .call()
             .content()
         logger.info("OpenAI call took ${System.currentTimeMillis() - start} ms") // Testing openai speed
