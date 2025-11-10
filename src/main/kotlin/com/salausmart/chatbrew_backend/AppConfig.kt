@@ -18,5 +18,6 @@ class AppConfig {
     fun chatMemory(): ChatMemory =
         MessageWindowChatMemory.builder()
             .maxMessages(20)
+            .chatMemoryRepository(chatMemoryRepository())
             .build()
 }

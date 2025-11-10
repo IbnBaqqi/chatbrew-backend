@@ -23,7 +23,8 @@ class ChatController(
         @RequestBody request : ChatRequest
     ) : ResponseEntity<*> {
         logger.info("Got called")
+
         val chatResponse = chatService.sendMessage(request) ?: ChatResponse("No response") //@Todo remove the null response
-        return ResponseEntity.status(HttpStatus.OK).body(ChatResponse(chatResponse as String))
+        return ResponseEntity.status(HttpStatus.OK).body(chatResponse)
     }
 }
