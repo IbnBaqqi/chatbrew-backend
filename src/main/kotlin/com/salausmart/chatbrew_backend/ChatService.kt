@@ -35,12 +35,12 @@ class ChatService (
 
         val prompt: Prompt = promptTemplate.create(mapOf("query" to request.prompt))
 
-        val start = System.currentTimeMillis() // Testing openai speed
+//        val start = System.currentTimeMillis() // Testing openai speed
         val response = chatClient.prompt(prompt)
             .advisors { it.param(ChatMemory.CONVERSATION_ID, chatId) }
             .call()
             .entity(ChatResponse::class.java)
-        logger.info("OpenAI call took ${System.currentTimeMillis() - start} ms") // Testing openai speed
+//        logger.info("OpenAI call took ${System.currentTimeMillis() - start} ms") // Testing openai speed
         return response
     }
 }
